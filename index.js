@@ -3,7 +3,7 @@ const client = new Discord.Client()
 const pronote = require('pronote-api');
 const Enmap = require("enmap");
 const user = new Enmap({name: "user"}); 
-const prefix = "!"
+const prefix = "TON PREFIX ICI"
 
 client.on('ready', () => {
     console.log("Ready")
@@ -158,4 +158,4 @@ client.on('message', (message) => {
     }
 })
 
-client.login("NjUwOTg5NDM5ODA3Mzg5Njk4.XeTXKQ.WleD3kLU2XfKUXwm1uLJk-R6D2w")
+client.login("TON TOKEN ICI")
