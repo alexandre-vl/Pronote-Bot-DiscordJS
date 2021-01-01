@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "pronote-api": "^2.3.0"
+  }
+}
