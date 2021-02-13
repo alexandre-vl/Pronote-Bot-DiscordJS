@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "discord.js": "^12.5.1",
+    "enmap": "^5.8.2",
+    "fs": "^0.0.1-security",
+    "moment": "^2.29.1",
     "pronote-api": "^2.3.0"
   }
 }
