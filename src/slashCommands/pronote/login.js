@@ -43,7 +43,8 @@ module.exports = {
 
     if (user)
       return await interaction.editReply({
-        content: "❌ You already have a linked account",
+        content:
+          "❌ Vous avez déjà lié votre compte. Si vous souhaitez le changer, utilisez la commande `/unlink`",
         ephemeral: true,
       });
 
@@ -55,13 +56,14 @@ module.exports = {
     let session = await pronote
       .login(url, username, password, cas)
       .catch(async (err) => {
-        return await interaction.editReply({
-          content:
-            "`❌` Les informations de connexions sont invalides.\n Exemple: ```/login Paul paul061234 ac-bordeaux https://demo.index-education.net/pronote/```\nPour voir la liste des CAS disponibles voir [ici](https://github.com/alexandre-vl/pronote-api/tree/master/src/cas).",
-          ephemeral: true,
-        });
+        return;
       });
-    if (!session) return;
+    if (!session?.user)
+      return await interaction.editReply({
+        content:
+          "`❌` Les informations de connexions sont invalides.\n Exemple: ```/login Paul paul061234 ac-bordeaux https://demo.index-education.net/pronote/```\nPour voir la liste des CAS disponibles voir [ici](https://github.com/alexandre-vl/pronote-api/tree/master/src/cas).",
+        ephemeral: true,
+      });
 
     let account = {
       _id: member.id,
@@ -73,7 +75,17 @@ module.exports = {
     await db.insert_obj("global_data", "user", account);
 
     await interaction.editReply({
-      content: `Vous êtes connecté en tant que **${session.user.name}**\n*Infos: votre mot de passe a bien été crypté.*`,
+      embeds: [
+        {
+          color: "#31946c",
+          title: "Connexion réussie",
+          description: `Vous êtes connecté en tant que **${session.user.name}**.\n\n\`Infos: votre mot de passe a bien été crypté.\``,
+          footer: {
+            text: "Pronote Bot",
+            icon_url: client.user.displayAvatarURL(),
+          },
+        },
+      ],
     });
   },
 };
