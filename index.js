@@ -10,6 +10,9 @@ const client = new Client({
   ],
 });
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 //SET COLLECTION
 client.commandes = new Collection();
 client.slash = new Collection();
@@ -21,13 +24,23 @@ client.logger = require("./src/utils/logger");
 client.color = require("./src/utils/color.js");
 
 //SET CONFIG
-client.config = require("./config");
+client.config = {
+  token: process.env.TOKEN,
+  prefix: process.env.PREFIX,
+  owner: process.env.OWNER,
+  guildID: process.env.GUILDID,
+  botID: process.env.BOTID,
+};
 
-// LOAD THE 4 HANDLERS
-["error", "command", "slashCommands", "event"].forEach((file) => {
+[
+  // LOAD THE 4 HANDLERS
+  ("error", "command", "slashCommands", "event"),
+].forEach((file) => {
   require(`./src/utils/handlers/${file}`)(client);
 });
 
 client.login(client.config.token);
+
+module.exports.config = client.config;
 
 require("./slash");
