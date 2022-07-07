@@ -44,7 +44,7 @@ module.exports = {
     if (user)
       return await interaction.editReply({
         content:
-          "❌ Vous avez déjà lié votre compte. Si vous souhaitez le changer, utilisez la commande `/unlink`",
+          "`❌` Vous avez déjà lié votre compte. Si vous souhaitez le changer, utilisez la commande `/unlink`",
         ephemeral: true,
       });
 
