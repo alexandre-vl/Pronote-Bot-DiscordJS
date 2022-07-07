@@ -13,6 +13,9 @@ const client = new Client({
 const dotenv = require("dotenv");
 dotenv.config();
 
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr(process.env.CRYPT_KEY);
+
 //SET COLLECTION
 client.commandes = new Collection();
 client.slash = new Collection();
@@ -32,10 +35,12 @@ client.config = {
   botID: process.env.BOTID,
 };
 
-["error", "command", "slashCommands", "event"].forEach((file) => {
+["error", "slashCommands", "event"].forEach((file) => {
   require(`./src/utils/handlers/${file}`)(client);
 });
 
 client.login(client.config.token);
 
 require("./slash");
+
+module.exports.cryptr = cryptr;

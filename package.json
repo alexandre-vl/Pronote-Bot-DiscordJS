@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/rest": "^0.5.0",
-    "@dorian-eydoux/pronote-api": "^2.3.4",
+    "@dorian-eydoux/pronote-api": "github:alexandre-vl/pronote-api",
     "chalk": "^4.1.2",
+    "cryptr": "^6.0.3",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "mongodb": "^4.7.0"
   }
 }

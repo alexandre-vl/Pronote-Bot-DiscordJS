@@ -1,4 +1,6 @@
 const { Collection } = require("discord.js");
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr(process.env.CRYPT_KEY);
 
 module.exports = async (client, interaction) => {
   if (interaction.isCommand() || interaction.isContextMenu()) {
@@ -40,7 +42,7 @@ module.exports = async (client, interaction) => {
           });
         }
       }
-      command.run(client, interaction);
+      command.run(client, interaction, cryptr);
     } catch (e) {
       console.log(e);
       await interaction.reply({
