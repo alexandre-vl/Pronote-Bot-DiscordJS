@@ -8,5 +8,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^0.5.0",
+    "@dorian-eydoux/pronote-api": "^2.3.4",
+    "chalk": "^4.1.2",
+    "discord.js": "^13.8.1",
+    "moment": "^2.29.4"
+  }
 }
