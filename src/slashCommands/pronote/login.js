@@ -72,6 +72,7 @@ module.exports = {
       cas: cas,
       url: url,
     };
+
     await db.insert_obj("global_data", "user", account);
 
     await interaction.editReply({
@@ -79,7 +80,7 @@ module.exports = {
         {
           color: "#31946c",
           title: "Connexion réussie",
-          description: `Vous êtes connecté en tant que **${session.user.name}**.\n\n\`Infos: votre mot de passe a bien été crypté.\``,
+          description: `Vous êtes connecté en tant que **${session.user.name}**.\n\n\`Infos: votre mot de passe a bien été chiffrés.\``,
           footer: {
             text: "Pronote Bot",
             icon_url: client.user.displayAvatarURL(),
