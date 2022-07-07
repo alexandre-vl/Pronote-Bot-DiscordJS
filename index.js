@@ -32,15 +32,10 @@ client.config = {
   botID: process.env.BOTID,
 };
 
-[
-  // LOAD THE 4 HANDLERS
-  ("error", "command", "slashCommands", "event"),
-].forEach((file) => {
+["error", "command", "slashCommands", "event"].forEach((file) => {
   require(`./src/utils/handlers/${file}`)(client);
 });
 
 client.login(client.config.token);
-
-module.exports.config = client.config;
 
 require("./slash");

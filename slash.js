@@ -2,8 +2,8 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { readdirSync } = require("fs");
 const path = require("path");
-const { config } = require("./index.js");
-console.log(config);
+const dotenv = require("dotenv");
+dotenv.config();
 
 const commands = [];
 readdirSync("./src/slashCommands/").map(async (dir) => {
@@ -13,14 +13,14 @@ readdirSync("./src/slashCommands/").map(async (dir) => {
     );
   });
 });
-const rest = new REST({ version: "9" }).setToken(config.token);
+const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
 
 (async () => {
   try {
     console.log("[Discord API] Started refreshing application (/) commands.");
     await rest.put(
       // GUILD SLASH COMMANDS (will deploy only in the server you put the ID of)
-      Routes.applicationGuildCommands(config.botID, config.guildID),
+      Routes.applicationGuildCommands(process.env.BOTID, process.env.GUILDID),
 
       // GLOBAL SLASH COMMANDS
       /*       Routes.applicationCommands(config.botID), */
